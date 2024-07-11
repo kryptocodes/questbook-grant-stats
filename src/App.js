@@ -110,7 +110,7 @@ const GrantApplicationsBarChart = () => {
         labels,
         datasets: [
           {
-            label: "applications",
+            label: "proposals",
             data: results,
             backgroundColor: "rgba(64, 162, 235)",
           },

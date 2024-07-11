@@ -142,12 +142,12 @@ const GrantApplicationsBarChart = () => {
       <div
         className="flex 
               flex-col
-            justify-center items-center h-screen"
+            justify-center items-center"
       >
         {
           <div className=" p-4 lg:p-12">
             <h2 className="text-2xl font-semibold text-center mb-4">
-              TON Grants
+              TON Grants Stats
             </h2>
             <select
               value={selectedGrant}

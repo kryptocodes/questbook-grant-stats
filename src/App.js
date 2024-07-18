@@ -23,7 +23,7 @@ const GrantApplicationsBarChart = () => {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  const fetchGrantApplications = async () => {
+  const fetchGrantApplications = async (selectedGrant) => {
     const now = new Date();
     const timestamps = [];
     const results = [];
@@ -93,7 +93,15 @@ const GrantApplicationsBarChart = () => {
 
   useEffect(() => {
     const getData = async () => {
-      const results = await fetchGrantApplications();
+      let results = [];
+      if(selectedGrant === "0x") {
+         // Merge Education & Developers Bounties
+          const results1 = await fetchGrantApplications("0x96e3ff60171310eeb7bd1b6216c74d4cc768870f");
+          const results2 = await fetchGrantApplications("0xd92881bea3923fec2d8e61aa947c981faa4ab970");
+          results = results1.map((value, index) => value + results2[index]);
+      } else {
+          results = await fetchGrantApplications(selectedGrant);
+      }
       const now = new Date();
       const labels = [];
 
@@ -135,6 +143,10 @@ const GrantApplicationsBarChart = () => {
       id: "663d2b4c7d71679fa9959bf6",
       name: "Asian-Pacific Focus Telegram Mini-App Grants",
     },
+    {
+      id: "0x",
+      name: "Bounties (Merged)",
+    }
   ];
 
   return (
